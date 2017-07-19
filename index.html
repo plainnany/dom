@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button>增加</button>
+    <button>删除</button>
+    <button>修改</button>
+    <button>查找</button>
+    <button>找到大哥</button>
+
+    <p>这是一个p标签</p>
+    这是body的一段文本内容
+    <p>
+        <span>这是一个span标签</span>
+        <span>这是另一个span标签</span>
+    </p>
+    <p>
+        <span>这是一个span标签</span>
+        <span>这是另一个span标签</span>
+    </p>
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+
+    <script src="dom.js"></script>
+    <script>
+            var btn = document.getElementsByTagName('button');
+            var p = dom.find('p');
+            var div = dom.find('div');
+            btn[0].onclick = function () {
+                alert('你正在新增一个div')
+                var div=  dom.create('div',dom.create('span','这是新增的标签内容'),{
+                    'class': 'box',
+                    'data-color': 'red'
+                });
+                document.body.appendChild(div);
+
+            }
+
+            btn[1].onclick = function(){
+                alert('你正在删除一个p标签');
+
+                dom.empty(p[1]);
+
+
+            }
+            btn[2].onclick = function(){
+                alert('你正在修改一个p标签的内容');
+                dom.style(p[0],{
+                    'background': '#ccc',
+                    'color': 'red'
+                });
+                p[0].textContent = '这里已经被修改了';
+            }
+            /*
+            btn[3].onclick=function(){
+                var arr = dom.find('span',dom.find('p')[0]);
+                arr[0].style.color = 'red'
+            }  */
+            btn[3].onclick = function(){
+                alert('你正在查找一个span标签');
+                var arr = dom.find('span',dom.find('p')[2]);
+                dom.style(arr[0],{
+                    'color': 'red',
+                    'background': 'orange'
+                });
+
+            }
+            btn[4].onclick = function() {
+                alert('查找div3的大哥');
+                var bro = dom.bigBrother(div[2]);
+                dom.style(bro, {
+                    'color': 'blue',
+                    'background': '#ccc'
+                })
+            }
+
+
+
+
+    </script>
+</body>
+</html>
